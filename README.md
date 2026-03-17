@@ -222,18 +222,55 @@
 
 ## Chrome Extension
 
-1. 安裝擴充功能
-2. 開啟 Google Sheet
-3. 啟動 Mail Merge
+Step 1️⃣ 取得擴充功能資料夾
 
----
+你會拿到一個資料夾，例如：
 
-# 🚀 進階功能（未來）
+mail-merge-extension/
+  ├── manifest.json
+  ├── background.js
+  ├── content.js
+  ├── popup.html
+  ├── icon.png
 
-* 批次寄送 Queue
-* 寄送統計 Dashboard
-* 多人協作
-* SaaS 版本
+📌 注意：
+👉 必須是「資料夾」，不是 zip
+
+Step 2️⃣ 打開 Chrome 擴充功能頁
+
+在 Chrome 輸入：
+
+[chrome://extensions/](url)
+Step 3️⃣ 開啟開發者模式
+
+右上角打開：
+
+開發人員模式（Developer Mode）
+Step 4️⃣ 載入未封裝項目
+
+點擊：
+
+載入未封裝項目（Load unpacked）
+
+然後選擇：
+
+👉 mail-merge-extension/ 資料夾
+
+Step 5️⃣ 安裝完成 🎉
+
+你會看到：
+
+擴充功能出現在列表中
+
+Chrome 右上角出現圖示
+
+✅ 使用方式
+
+開啟 Google Sheet
+
+點擊 Chrome 擴充功能
+
+啟動 Mail Merge
 
 ---
 
