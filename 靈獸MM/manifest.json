@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Sheet Mail Merge Launcher",
+  "version": "1.0.0",
+  "description": "從目前 Google Sheet 啟動 Mail Merge Web App",
+  "permissions": ["tabs"],
+  "host_permissions": [
+    "https://docs.google.com/spreadsheets/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://docs.google.com/spreadsheets/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Open Mail Merge"
+  }
+}
