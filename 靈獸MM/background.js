@@ -1,4 +1,4 @@
-const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwo5H0GQE7w2t4MR2Wqk8FsnouMMEWhqR2IltwwXWCXaUfJrCbIZ-t6avb29E0_JyFp/exec';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz6rh91araOqfT7kcTGyUkxjDnPy1zqyZbC8UQrYG_7wQmnqwoTt5kRa7sZMwtsU-jd-g/exec';
 
 /**
  * 從 Google Sheet URL 中解析 spreadsheetId 與 gid。
