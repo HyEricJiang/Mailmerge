@@ -1,8 +1,7 @@
-const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz6rh91araOqfT7kcTGyUkxjDnPy1zqyZbC8UQrYG_7wQmnqwoTt5kRa7sZMwtsU-jd-g/exec';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwVYiRzx-r6mG2XOtsqF9oOUWjvGCFitOi2lsqadMzfkFU0BhqZaDOx2_uV2i-6MRCw_A/exec';
 
 /**
  * 從 Google Sheet URL 中解析 spreadsheetId 與 gid。
- * 為了避免前端硬猜，統一在 background 處理一次。
  */
 function parseSheetInfo(url) {
   const result = {
@@ -18,6 +17,42 @@ function parseSheetInfo(url) {
 
   return result;
 }
+
+/**
+ * 設定擴充功能右上角的 Badge。
+ * 這裡使用 MAIL 作為小標籤，讓使用者更容易辨識這個工具的用途。
+ *
+ * 注意：
+ * Chrome badge 能顯示的字數有限，
+ * "MAIL" 在多數情況下可以顯示，但若圖示太小或系統縮放較高，
+ * 有些環境可能會被壓縮。
+ */
+function setMailBadge() {
+  chrome.action.setBadgeText({ text: 'MAIL' });
+  chrome.action.setBadgeBackgroundColor({ color: '#1a73e8' });
+  chrome.action.setBadgeTextColor?.({ color: '#ffffff' });
+}
+
+/**
+ * 安裝或更新擴充功能時設定一次 Badge。
+ */
+chrome.runtime.onInstalled.addListener(() => {
+  setMailBadge();
+});
+
+/**
+ * 瀏覽器啟動後，重新補上 Badge。
+ * 因為有些情況下 service worker 重啟後，badge 需要重新設定。
+ */
+chrome.runtime.onStartup?.addListener(() => {
+  setMailBadge();
+});
+
+/**
+ * 當 service worker 被喚醒時，也補一次 badge。
+ * 這樣可以降低 badge 消失的機率。
+ */
+setMailBadge();
 
 chrome.action.onClicked.addListener(async (tab) => {
   if (!tab || !tab.url || !tab.url.includes('docs.google.com/spreadsheets')) {
